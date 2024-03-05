@@ -10,7 +10,7 @@ public class Estrategia4 implements EstrategiaBusqueda {
     }
 
     @Override
-    public Nodo[] soluciona(ProblemaBusqueda p) throws Exception{
+    public ArrayList<Nodo> soluciona(ProblemaBusqueda p) throws Exception{
         ArrayList<Nodo> explorados = new ArrayList<>();
         Nodo nodoActual = new Nodo(p.getEstadoInicial(), null, null);
         explorados.add(nodoActual);
@@ -40,9 +40,9 @@ public class Estrategia4 implements EstrategiaBusqueda {
             }
             if (!modificado) throw new Exception("No se ha podido encontrar una solución");
         }
-        System.out.println((i++) + " - FIN - " + nodoActual.getEstado());
+        System.out.println((++i) + " - FIN - " + nodoActual.getEstado());
 
-        return reconstruye_sol(nodoActual).toArray(new Nodo[0]);
+        return reconstruye_sol(nodoActual);
     }
 
     private ArrayList<Nodo> reconstruye_sol (Nodo nodo){

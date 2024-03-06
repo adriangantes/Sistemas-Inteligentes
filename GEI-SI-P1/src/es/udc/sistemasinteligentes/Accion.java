@@ -16,7 +16,7 @@ public abstract class Accion {
      * @param es Estado sobre el que se aplica la acción
      * @return Estado resultante
      */
-    public abstract Estado aplicaA(Estado es);
+    public abstract Estado aplicaA(Estado es) throws Exception;
 
     /**
      * Devuelve el coste de aplicar la acción, que, por defecto, será uno.

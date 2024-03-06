@@ -36,4 +36,13 @@ public class Nodo {
         if (o == null || getClass() != o.getClass()) return false;
         return hashCode() == o.hashCode();
     }
+
+    @Override
+    public String toString() {
+        if(accion == null && padre == null){
+            return "Nodo {" + "es=" + estado.toString() + ", ac= Ninguno"  + ", fha = Ninguno }'";
+        }else{
+            return "Nodo {" + "es=" + estado.toString() + ", ac=" + accion.toString() + ", fha=" + padre.hashCode() +'}';
+        }
+    }
 }

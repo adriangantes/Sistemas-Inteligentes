@@ -3,6 +3,7 @@ package es.udc.sistemasinteligentes.ejemplo;
 import es.udc.sistemasinteligentes.*;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Estrategia4 implements EstrategiaBusqueda {
 
@@ -12,6 +13,7 @@ public class Estrategia4 implements EstrategiaBusqueda {
     @Override
     public ArrayList<Nodo> soluciona(ProblemaBusqueda p) throws Exception{
         ArrayList<Nodo> explorados = new ArrayList<>();
+        System.out.println(p.getEstadoInicial());
         Nodo nodoActual = new Nodo(p.getEstadoInicial(), null, null);
         explorados.add(nodoActual);
 
@@ -40,7 +42,7 @@ public class Estrategia4 implements EstrategiaBusqueda {
             }
             if (!modificado) throw new Exception("No se ha podido encontrar una solución");
         }
-        System.out.println((++i) + " - FIN - " + nodoActual.getEstado());
+        System.out.println((i) + " - FIN - " + nodoActual.getEstado());
 
         return reconstruye_sol(nodoActual);
     }
@@ -50,14 +52,11 @@ public class Estrategia4 implements EstrategiaBusqueda {
         Nodo nodoActual = nodo;
 
         while (nodoActual != null){
-
-            if (nodoActual.getAccion() != null) {
-                sol.add(nodoActual);
-            }
-
+            sol.add(nodoActual);
             nodoActual = nodoActual.getPadre();
         }
 
+        Collections.reverse(sol);
         return sol;
     }
 }

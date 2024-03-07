@@ -34,7 +34,7 @@ public abstract class ProblemaBusqueda {
      * @param acc Acción a aplicar
      * @return Estado resultante
      */
-    public Estado result(Estado es, Accion acc){
+    public Estado result(Estado es, Accion acc) throws Exception {
         return acc.aplicaA(es);
     }
 }

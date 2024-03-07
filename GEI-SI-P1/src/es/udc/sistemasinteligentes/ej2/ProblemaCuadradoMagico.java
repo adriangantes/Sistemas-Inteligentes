@@ -188,7 +188,7 @@ public class ProblemaCuadradoMagico extends ProblemaBusqueda  {
         EstadoCuadrado esMag = (EstadoCuadrado) es;
         int tamMatriz = esMag.getTam();
         AccionCuadrado action;
-        for (int i = 1; i <= tamMatriz* tamMatriz; i++) {
+        for (int i = 1; i <= tamMatriz* tamMatriz; i++) { //aquí elige qué número introducir en el cuadrado
             if(esMag.numNoExistente(i)) {
                 action = new AccionCuadrado(i);
                 listAcciones.add(action);

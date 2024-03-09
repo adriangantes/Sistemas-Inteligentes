@@ -1,39 +1,36 @@
 package es.udc.sistemasinteligentes.ej2;
 
-import es.udc.sistemasinteligentes.Accion;
-import es.udc.sistemasinteligentes.EstrategiaBusqueda;
-import es.udc.sistemasinteligentes.Nodo;
-import es.udc.sistemasinteligentes.ProblemaBusqueda;
+import es.udc.sistemasinteligentes.*;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Stack;
+import java.util.PriorityQueue;
 
-public class EstrategiaProfundidad implements EstrategiaBusqueda { //cola lifo
+public class EstrategiaAEstrella implements EstrategiaBusquedaInformada {
 
-    public EstrategiaProfundidad (){
+    public EstrategiaAEstrella (){
     }
 
-    public ArrayList<Nodo> soluciona(ProblemaBusqueda p) throws Exception{
+    public Estado soluciona(ProblemaBusqueda p, Heuristica h) throws Exception{
         int cont_creados = 0, cont_expandidos = 0;
-        ArrayList<Nodo> explorados = new ArrayList<>();
-        Nodo nodoActual = new Nodo(p.getEstadoInicial(), null, null);
+        ArrayList<Nodo2> explorados = new ArrayList<>();
+        Nodo2 nodoActual = new Nodo2(p.getEstadoInicial(), null, null, h);
         cont_creados++;
         System.out.println("Nodo " + cont_creados + ": " + nodoActual.getEstado());
         explorados.add(nodoActual);
-        Stack<Nodo> frontera = new Stack<>();
-        frontera.push(nodoActual);
+        PriorityQueue<Nodo2> frontera = new PriorityQueue<>();
+        frontera.add(nodoActual);
 
         while (!p.esMeta(nodoActual.getEstado())){
 
             if(frontera.isEmpty()) throw new Exception("Frontera vacía.");
-            nodoActual=frontera.pop();
+            nodoActual=frontera.poll();
             cont_expandidos++;
             explorados.add(nodoActual);
             Accion[] accionesDisponibles = p.acciones(nodoActual.getEstado());
 
             for (Accion acc: accionesDisponibles) {
-                Nodo sc = new Nodo (p.result(nodoActual.getEstado(), acc), nodoActual, acc);
+                Nodo2 sc = new Nodo2 (p.result(nodoActual.getEstado(), acc), nodoActual, acc, h);
                 cont_creados++;
                 if (!explorados.contains(sc) && !frontera.contains(sc)) {
                     System.out.println("Nodo " + cont_creados + ": " + sc.getEstado());
@@ -43,10 +40,10 @@ public class EstrategiaProfundidad implements EstrategiaBusqueda { //cola lifo
         }
 
         System.out.println("\nCreados: " + cont_creados + "\nExplorados: " + cont_expandidos);
-        return reconstruye_sol(nodoActual);
+        return nodoActual.getEstado();
     }
-
-    private ArrayList<Nodo> reconstruye_sol (Nodo nodo){
+/*
+    public ArrayList<Nodo> reconstruye_sol (Estado nodo){
         ArrayList<Nodo> sol = new ArrayList<> ();
         Nodo nodoActual = nodo;
 
@@ -57,5 +54,5 @@ public class EstrategiaProfundidad implements EstrategiaBusqueda { //cola lifo
 
         Collections.reverse(sol);
         return sol;
-    }
+    }*/
 }

@@ -88,19 +88,19 @@ public class ProblemaCuadradoMagico extends ProblemaBusqueda  {
             return suma;
         }
 
-        public int[][] getMAtrix(){
+        public int[][] getMatriz(){
             return matriz;
         }
 
         @Override
         public String toString() {
             StringBuilder aux = new StringBuilder();
-            for (int[] ints : matriz) {
+            for (int i = 0; i < tam; i++) {
                 aux.append("[ ");
-                for (int anInt : ints) {
-                    aux.append(anInt + " ");
+                for (int j = 0; j < tam; j++) {
+                    aux.append(matriz[i][j] + " ");
                 }
-                aux.append("],");
+                aux.append("], ");
             }
             return aux.toString();
         }
@@ -128,6 +128,8 @@ public class ProblemaCuadradoMagico extends ProblemaBusqueda  {
         public int hashCode() {
             return 31 * matriz.hashCode();
         }
+
+
 
     }
 

@@ -15,13 +15,10 @@ public class MainEj2a {
         ArrayList<Nodo> solucion;
 
 
-        System.out.println("\nSolucion Aplicando BusquedaProfundiad:");
+        System.out.println("\nSolucion Aplicando BusquedaProfundiad:\n");
         EstrategiaBusqueda buscador = new EstrategiaProfundidad();
         solucion = buscador.soluciona(cuadrado);
-        EstrategiaProfundidad busqueda2 = (EstrategiaProfundidad) buscador;
-        System.out.println("Solucion : ");
-//        System.out.println("Nodos Explorados: "+ busqueda2.getNodosExplorados());
-//        System.out.println("Nodos Creados: "+ busqueda2.getNodosCreados() );
+        System.out.println("\nSolucion: ");
         for (Nodo n: solucion) {
             System.out.println(n);
         }
@@ -29,28 +26,17 @@ public class MainEj2a {
 
         ProblemaCuadradoMagico.EstadoCuadrado estadoInicial2  = new ProblemaCuadradoMagico.EstadoCuadrado(matriz2);
         ProblemaBusqueda cuadrado2 = new ProblemaCuadradoMagico(estadoInicial2);
-//        System.out.println("\nSolucion cuadrado 2 Aplicando BusquedaAnchura: \n");
-//        buscador = new BusquedaAnchura();
-//        solucion = buscador.soluciona(cuadrado2);
-//        System.out.println("Solucion : ");
-//        busqueda = (BusquedaAnchura) buscador;
-//        System.out.println("Nodos Explorados: "+ busqueda.getNodosExplorados());
-//        System.out.println("Nodos Creados: "+ busqueda.getNodosCreados() );
-//        for (Nodo n: solucion) {
-//            System.out.println(n);
-//        }
+        System.out.println("\nSolucion cuadrado 2 Aplicando BusquedaAEstrella: \n");
+        EstrategiaBusquedaInformada buscador2 = new EstrategiaAEstrella();
+        Estado solucion2 = buscador2.soluciona(cuadrado2, new HeuristicaCuadradoMagico());
+        System.out.println("\nSolucion: " + solucion2);
 
-//        System.out.println("\nSolucion cuadrado 2 Aplicando BusquedaProfundiad:");
-//        buscador = new EstrategiaProfundidad();
-//        solucion = buscador.soluciona(cuadrado2);
-//        busqueda2 = (BusquedaGrafoProfundidad) buscador;
-//        System.out.println("Nodos Explorados: "+ busqueda2.getNodosExplorados());
-//        System.out.println("Nodos Creados: "+ busqueda2.getNodosCreados() );
-//        System.out.println("Solucion : ");
-//        for (Nodo n: solucion) {
-//            System.out.println(n);
-//        }
-
+        ProblemaCuadradoMagico.EstadoCuadrado estadoInicial3  = new ProblemaCuadradoMagico.EstadoCuadrado(matriz3);
+        ProblemaBusqueda cuadrado3 = new ProblemaCuadradoMagico(estadoInicial3);
+        System.out.println("\nSolucion cuadrado 3 Aplicando BusquedaAEstrella: \n");
+        EstrategiaBusquedaInformada buscador3 = new EstrategiaAEstrella();
+        Estado solucion3 = buscador3.soluciona(cuadrado3, new HeuristicaCuadradoMagico());
+        System.out.println("\nSolucion: " + solucion3);
 
     }
 }
